@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <body>
+    <div class="bg-slate-50 h-[100vh] flex flex-col p-5">
+      <div class="text-center text-5xl font-medium mt-3">Todo Application</div>
+
+      <div class="flex justify-between mt-4 h-full">
+        <div class="flex-1 border h-full">
+          <div
+            class="text-center text-3xl font-semibold p-2 bg-green-500 text-white"
+          >
+            Tasks
+          </div>
+          <div class="">
+            {% for task in comp_task %}
+            <div
+              class="bg-slate-200 p-2 border shadow-md shadow-black/50 my-2 rounded-md mx-4 flex items-center"
+            >
+              <div class="font-bold text-xl flex-1">{{task.task_name}}</div>
+
+              <div class="flex gap-5">
+                <a
+                  href="{% url 'make_complete' task.pk %}"
+                  class="bg-green-500 flex w-8 h-8 justify-center items-center rounded-md text-white"
+                  ><i class="fa-solid fa-check-double"></i
+                ></a>
+                <a
+                  href="{% url 'delete' task.pk %}"
+                  class="bg-red-500 flex w-8 h-8 justify-center items-center rounded-md text-white"
+                  ><i class="fa-solid fa-trash"></i
+                ></a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="flex-1 border">
+          <div
+            class="text-center text-3xl font-semibold p-2 bg-red-500 text-white"
+          >
+            Completed Task
+          </div>
+          <div>
+            {% for ftask in finish_task %}
+            <div
+              class="bg-slate-200 p-2 border shadow-md shadow-black/50 my-2 rounded-md mx-4 flex items-center"
+            >
+              <div class="font-bold text-xl flex-1">{{ftask.task_name}}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <hr />
+
+      <form action="{% url 'add_task' %}" method="post">
+        {% csrf_token %}
+        <div class="bg-slate-100 my-4">
+          <input
+            type="text"
+            placeholder="Enter task"
+            name="task"
+            class="w-90 p-2 border text-xl m-2"
+          />
+          <button
+            type="submit"
+            class="bg-blue-500 text-white rounded-md h-full p-2"
+          >
+            Add Task
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
