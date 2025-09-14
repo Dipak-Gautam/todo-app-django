@@ -1,6 +1,7 @@
 
 
 from django.shortcuts import render
+from django.http import HttpResponse, JsonResponse
 
 from todoapp.models import TODOAPP
 
@@ -13,3 +14,9 @@ def home(request):
         'finish_task': finish_task
     }
     return render(request, 'home.html', context)
+
+
+def all(request):
+    data = TODOAPP.objects.all().values(
+        'task_name', 'is_completed', 'created_at', 'updated_at')
+    return JsonResponse(list(data), safe=False)
