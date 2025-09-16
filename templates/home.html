@@ -17,14 +17,14 @@
     <div class="bg-slate-50 h-[100vh] flex flex-col p-5">
       <div class="text-center text-5xl font-medium mt-3">Todo Application</div>
 
-      <div class="flex justify-between mt-4 h-full">
-        <div class="flex-1 border h-full">
+      <div class="flex justify-between mt-4 h-[78%]">
+        <div class="flex-1 border">
           <div
             class="text-center text-3xl font-semibold p-2 bg-green-500 text-white"
           >
             Tasks
           </div>
-          <div class="">
+          <div class="h-[90%] overflow-auto">
             {% for task in comp_task %}
             <div
               class="bg-slate-200 p-2 border shadow-md shadow-black/50 my-2 rounded-md mx-4 flex items-center"
@@ -53,7 +53,7 @@
           >
             Completed Task
           </div>
-          <div>
+          <div class="h-[90%] overflow-auto">
             {% for ftask in finish_task %}
             <div
               class="bg-slate-200 p-2 border shadow-md shadow-black/50 my-2 rounded-md mx-4 flex items-center"
