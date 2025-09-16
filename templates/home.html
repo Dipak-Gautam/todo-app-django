@@ -59,6 +59,11 @@
               class="bg-slate-200 p-2 border shadow-md shadow-black/50 my-2 rounded-md mx-4 flex items-center"
             >
               <div class="font-bold text-xl flex-1">{{ftask.task_name}}</div>
+              <a
+                href="{% url 'delete' ftask.pk %}"
+                class="bg-red-500 flex w-8 h-8 justify-center items-center rounded-md text-white"
+                ><i class="fa-solid fa-trash"></i
+              ></a>
             </div>
             {% endfor %}
           </div>
